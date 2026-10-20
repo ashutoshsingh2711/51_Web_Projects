@@ -19,11 +19,11 @@ This repository contains a curated collection of web development projects rangin
 
 The goal of this repository is to:
 
-- Help beginners practice web development
-- Encourage open-source contributions
-- Build real-world frontend projects
-- Improve problem-solving and development skills
-- Provide hands-on learning experience
+- Help beginners practice web development.
+- Encourage open-source contributions.
+- Build real-world frontend projects.
+- Improve problem-solving and development skills.
+- Provide hands-on learning experience.
 
 ---
 
