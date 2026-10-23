@@ -1,68 +1,186 @@
-*{
+/* ---------- Theme variables ---------- */
+
+:root {
+    --bg: #ffffff;
+    --text: #000000;
+    --surface: #081b31;        
+    --surface-text: #ffffff;
+    --choice-hover: #081b31;
+    color-scheme: light;
+}
+
+[data-theme="dark"] {
+    --bg: #121212;
+    --text: #f2f2f2;
+    --surface: #1c3557;
+    --surface-text: #ffffff;
+    --choice-hover: #2f4f7f;
+    color-scheme: dark;
+}
+
+* {
     margin: 0;
     padding: 0;
-    text-align : center;
+    box-sizing: border-box;
+    text-align: center;
 }
 
-h1{
-    background-color: #081b31;
-    color: white;
-    height: 5rem;
-    line-height: 5rem;
+body {
+    position: relative;
+    background-color: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.choice:hover{
-    cursor: pointer;
-    background-color: #081b31;
-}
-.choice{
-    height: 150px;
-    width: 150px;
+h1 {
+    background-color: var(--surface);
+    color: var(--surface-text);
+    min-height: 5rem;
+    padding: 1rem 4.5rem; 
     display: flex;
     justify-content: center;
+    align-items: center;
+    font-size: clamp(1.5rem, 5vw, 2rem);
+    transition: background-color 0.3s ease;
+}
+
+
+
+#theme-toggle {
+    position: absolute;
+    top: 1.125rem;
+    right: 1rem;
+    height: 2.75rem;
+    width: 2.75rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.25rem;
+    line-height: 1;
+    background: transparent;
+    border: 2px solid var(--surface-text);
     border-radius: 50%;
-    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
 }
 
-.choices{
+#theme-toggle:hover {
+    transform: scale(1.1);
+}
+
+#theme-toggle:focus-visible {
+    outline: 3px solid #7aa7ff;
+    outline-offset: 2px;
+}
+
+
+
+.choices {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
-    margin-top: 5rem;
+    flex-wrap: wrap;
+    gap: clamp(1rem, 4vw, 3rem);
+    margin-top: clamp(2rem, 8vh, 5rem);
+    padding: 0 1rem;
+}
+
+.choice {
+    --size: clamp(80px, 26vw, 150px);
+    height: var(--size);
+    width: var(--size);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
 
-img{
-    height: 130px;
-    width: 130px;
+@media (hover: hover) {
+    .choice:hover {
+        background-color: var(--choice-hover);
+    }
+}
+
+.choice:active {
+    background-color: var(--choice-hover);
+}
+
+img {
+    height: 87%;
+    width: 87%;
     object-fit: cover;
     border-radius: 50%;
 }
 
-.score-board{
+
+
+.score-board {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 2rem;
-    margin-top: 3rem;
-    gap: 5rem;
+    font-size: clamp(1.25rem, 4vw, 2rem);
+    margin-top: clamp(1.5rem, 5vh, 3rem);
+    gap: clamp(2rem, 8vw, 5rem);
 }
 
 #user-score,
 #computer-score {
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 10vw, 4rem);
 }
 
-.msg-container{
-    margin-top: 5rem;
+
+
+.msg-container {
+    margin-top: clamp(2rem, 8vh, 5rem);
+    padding: 0 1rem 2rem;
 }
 
-#msg{
-    background-color: #081b31;
-    color: white;
-    display: inline;
+#msg {
+    background-color: var(--surface);
+    color: var(--surface-text);
+    display: inline-block; 
+    max-width: 100%;
     padding: 1rem;
-    font-size: 2rem;
+    font-size: clamp(1.1rem, 4.5vw, 2rem);
     border-radius: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+#msg.win {
+    background-color: green;
+}
+
+#msg.lose {
+    background-color: red;
+}
+
+
+
+@media (max-height: 500px) and (orientation: landscape) {
+    h1 {
+        min-height: 3.5rem;
+    }
+
+    #theme-toggle {
+        top: 0.5rem;
+        height: 2.5rem;
+        width: 2.5rem;
+    }
+
+    .choices {
+        margin-top: 1.5rem;
+    }
+
+    .choice {
+        --size: clamp(70px, 18vh, 110px);
+    }
+
+    .score-board,
+    .msg-container {
+        margin-top: 1.5rem;
+    }
 }
